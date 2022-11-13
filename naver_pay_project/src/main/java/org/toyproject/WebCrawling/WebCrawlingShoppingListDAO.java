@@ -1,6 +1,6 @@
-package org.toyproject.DAO;
+package org.toyproject.WebCrawling;
 
-import org.toyproject.DB.JDBCMgr;
+import org.toyproject.DB.ConnectionPoolMgr;
 import org.toyproject.entity.OrderedProductHistoryEntity;
 
 import java.sql.Connection;
@@ -14,6 +14,7 @@ import java.util.List;
 public class WebCrawlingShoppingListDAO {
 
     private static WebCrawlingShoppingListDAO webCrawlingShoppingListDAO = null;
+    private ConnectionPoolMgr connectionPoolMgr;
     private Connection conn=null;
     private PreparedStatement stmt=null;
     private ResultSet rs=null;
@@ -44,7 +45,11 @@ public class WebCrawlingShoppingListDAO {
 
 
     //해당 기간사이 결제정보 가져오기
-    public WebCrawlingShoppingListDAO(){}
+    public WebCrawlingShoppingListDAO(){
+        if (connectionPoolMgr == null) {
+            connectionPoolMgr = ConnectionPoolMgr.getInstance();
+        }
+    }
     public static WebCrawlingShoppingListDAO getInstance(){
         if (webCrawlingShoppingListDAO ==null){
             webCrawlingShoppingListDAO =new WebCrawlingShoppingListDAO();
@@ -55,7 +60,7 @@ public class WebCrawlingShoppingListDAO {
     public List<OrderedProductHistoryEntity> getOrderedProductHistoryEntityWithUserId(String userId){
         List<OrderedProductHistoryEntity> OrderedProductHistoryEntities = new ArrayList<>();
         try{
-            conn= JDBCMgr.getConnection();
+            conn= connectionPoolMgr.getConnection();
             stmt=conn.prepareStatement(Payment_SELECT_ORDEREDPRODUCTHISTORY);
             stmt.setString(1, userId);
             rs=stmt.executeQuery();
@@ -84,10 +89,12 @@ public class WebCrawlingShoppingListDAO {
                 OrderedProductHistoryEntities.add(theEntity);
             }
             return OrderedProductHistoryEntities;
-        }catch (SQLException e){
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }catch (Exception e){
             e.printStackTrace();
         }finally{
-            JDBCMgr.close(stmt,conn);
+            connectionPoolMgr.freeConnection(conn,stmt,rs);
         }
         return null;
     }

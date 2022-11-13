@@ -1,6 +1,4 @@
-package org.toyproject.DTO;
-
-import org.toyproject.entity.WebCrawlingShoppingListEntity;
+package org.toyproject.WebCrawling;
 
 import java.util.List;
 

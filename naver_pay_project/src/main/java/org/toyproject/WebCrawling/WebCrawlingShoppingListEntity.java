@@ -1,6 +1,4 @@
-package org.toyproject.entity;
-
-import java.util.Date;
+package org.toyproject.WebCrawling;
 
 public class WebCrawlingShoppingListEntity {
     private static WebCrawlingShoppingListEntity webCrawlingShoppingListEntity = null;
@@ -8,12 +6,12 @@ public class WebCrawlingShoppingListEntity {
     private String userId;
     private String userPw;
     private String userName;
-    private String userTel;
+    private String userPhone;
     private String userAddress;
     private String userPoint;
     //Company
     private String companyName;
-    private String comPanyTel;
+    private String companyPhone;
     private String companyStore;
     private long businessNumber;
     //Product
@@ -24,7 +22,7 @@ public class WebCrawlingShoppingListEntity {
     private String paymentMethod;
     //OrderInfo
     private String orderId;
-    private Date orderDate;
+    private String orderDate;
     private int orderQuantity;
     private int usedPoint;
     private long orderTotalMoney;
@@ -39,15 +37,15 @@ public class WebCrawlingShoppingListEntity {
 
     public WebCrawlingShoppingListEntity(){}
 
-    public WebCrawlingShoppingListEntity(String userId, String userPw, String userName, String userTel, String userAddress, String userPoint, String companyName, String comPanyTel, String companyStore, long businessNumber, String productName, long productPrice, int supplyPoint, String paymentMethod, String orderId, Date orderDate, int orderQuantity, int usedPoint, long orderTotalMoney) {
+    public WebCrawlingShoppingListEntity(String userId, String userPw, String userName, String userPhone, String userAddress, String userPoint, String companyName, String companyPhone, String companyStore, long businessNumber, String productName, long productPrice, int supplyPoint, String paymentMethod, String orderId, String orderDate, int orderQuantity, int usedPoint, long orderTotalMoney) {
         this.userId = userId;
         this.userPw = userPw;
         this.userName = userName;
-        this.userTel = userTel;
+        this.userPhone = userPhone;
         this.userAddress = userAddress;
         this.userPoint = userPoint;
         this.companyName = companyName;
-        this.comPanyTel = comPanyTel;
+        this.companyPhone = companyPhone;
         this.companyStore = companyStore;
         this.businessNumber = businessNumber;
         this.productName = productName;
@@ -64,11 +62,11 @@ public class WebCrawlingShoppingListEntity {
                 "userId='" + userId + '\'' +
                 ", userPw='" + userPw + '\'' +
                 ", userName='" + userName + '\'' +
-                ", userTel='" + userTel + '\'' +
+                ", userTel='" + userPhone + '\'' +
                 ", userAddress='" + userAddress + '\'' +
                 ", userPoint='" + userPoint + '\'' +
                 ", companyName='" + companyName + '\'' +
-                ", comPanyTel='" + comPanyTel + '\'' +
+                ", comPanyTel='" + companyPhone + '\'' +
                 ", companyStore='" + companyStore + '\'' +
                 ", businessNumber=" + businessNumber +
                 ", productName='" + productName + '\'' +
@@ -96,8 +94,8 @@ public class WebCrawlingShoppingListEntity {
         return userName;
     }
 
-    public String getUserTel() {
-        return userTel;
+    public String getUserPhone() {
+        return userPhone;
     }
 
     public String getUserAddress() {
@@ -112,8 +110,8 @@ public class WebCrawlingShoppingListEntity {
         return companyName;
     }
 
-    public String getComPanyTel() {
-        return comPanyTel;
+    public String getCompanyPhone() {
+        return companyPhone;
     }
 
     public String getCompanyStore() {
@@ -144,7 +142,7 @@ public class WebCrawlingShoppingListEntity {
         return orderId;
     }
 
-    public Date getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
@@ -167,11 +165,11 @@ public class WebCrawlingShoppingListEntity {
                 "userId='" + userId + '\'' +
                 ", userPw='" + userPw + '\'' +
                 ", userName='" + userName + '\'' +
-                ", userTel='" + userTel + '\'' +
+                ", userTel='" + userPhone + '\'' +
                 ", userAddress='" + userAddress + '\'' +
                 ", userPoint='" + userPoint + '\'' +
                 ", companyName='" + companyName + '\'' +
-                ", comPanyTel='" + comPanyTel + '\'' +
+                ", comPanyTel='" + companyPhone + '\'' +
                 ", companyStore='" + companyStore + '\'' +
                 ", businessNumber=" + businessNumber +
                 ", productName='" + productName + '\'' +
