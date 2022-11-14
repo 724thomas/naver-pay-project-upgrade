@@ -16,7 +16,8 @@ public class SignUpController {
 
     @RequestMapping("/login")
     public String signUp(@ModelAttribute("userDTO") UserDTO theDTO, Model model){
-        System.out.println(theDTO.getUserName());
+        SignUpService theService = SignUpService.getInstance();
+        theService.userSignUp(theDTO);
         return "Login";
     }
 }
