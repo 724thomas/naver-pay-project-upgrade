@@ -17,7 +17,11 @@ public class SignUpController {
     @RequestMapping("/login")
     public String signUp(@ModelAttribute("userDTO") UserDTO theDTO, Model model){
         SignUpService theService = SignUpService.getInstance();
-        theService.userSignUp(theDTO);
-        return "Login";
+        int result = theService.userSignUp(theDTO); //1 success, 0 fail.
+        if (result==0){
+            return "SignUp";
+        }else{
+            return "Login";
+        }
     }
 }

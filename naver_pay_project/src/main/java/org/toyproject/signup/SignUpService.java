@@ -29,7 +29,7 @@ public class SignUpService {
         }
     }
 
-    public void userSignUp(UserDTO theDTO){
+    public int userSignUp(UserDTO theDTO){
         SignUpService aService = SignUpService.getInstance();
         //유저가 없으면
         if(aService.getUserInfo(theDTO.getUserId(), theDTO.getUserPassword())==null){
@@ -41,8 +41,10 @@ public class SignUpService {
             int point = theDTO.getUserPoint();
             UserEntity theEntity = new UserEntity(id,pw,name,phone,point);
             aDao.insertUser(theEntity);
+            return 1;
         }else{
             System.out.println("User already Exists");
+            return 0;
         }
     }
 }
