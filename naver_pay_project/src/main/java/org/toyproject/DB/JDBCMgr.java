@@ -9,7 +9,7 @@ public class JDBCMgr {
 
         try {
             DriverManager.registerDriver(new org.h2.Driver());
-            conn = DriverManager.getConnection("jdbc:h2:~/JDBC", "sa2", "");
+            conn = DriverManager.getConnection("jdbc:h2:~/JDBC", "sa", "");
         } catch (SQLException e) {
             e.printStackTrace();
         }
