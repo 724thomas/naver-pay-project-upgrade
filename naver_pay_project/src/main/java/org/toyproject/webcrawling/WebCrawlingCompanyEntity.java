@@ -1,4 +1,4 @@
-package org.toyproject.WebCrawling;
+package org.toyproject.webcrawling;
 
 public class WebCrawlingCompanyEntity {
 

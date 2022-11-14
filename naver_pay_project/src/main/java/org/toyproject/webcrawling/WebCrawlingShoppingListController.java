@@ -1,4 +1,4 @@
-package org.toyproject.WebCrawling;
+package org.toyproject.webcrawling;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,6 +1,4 @@
-package org.toyproject.WebCrawling;
-
-import java.util.Date;
+package org.toyproject.webcrawling;
 
 public class WebCrawlingProductEntity {
 

@@ -1,23 +1,17 @@
-package org.toyproject.WebCrawling;
+package org.toyproject.signup;
 
-public class WebCrawlingUserEntity {
-
-    //User
+public class UserEntity {
     private String userId;
-    private String userPw;
+    private String userPassword;
     private String userName;
     private String userPhone;
-    private String userAddress;
     private int userPoint;
 
-    public WebCrawlingUserEntity(){}
-
-    public WebCrawlingUserEntity(String userId, String userPw, String userName, String userPhone, String userAddress, int userPoint) {
+    public UserEntity(String userId, String userPassword, String userName, String userPhone, int userPoint) {
         this.userId = userId;
-        this.userPw = userPw;
+        this.userPassword = userPassword;
         this.userName = userName;
         this.userPhone = userPhone;
-        this.userAddress = userAddress;
         this.userPoint = userPoint;
     }
 
@@ -25,8 +19,8 @@ public class WebCrawlingUserEntity {
         return userId;
     }
 
-    public String getUserPw() {
-        return userPw;
+    public String getUserPassword() {
+        return userPassword;
     }
 
     public String getUserName() {
@@ -35,10 +29,6 @@ public class WebCrawlingUserEntity {
 
     public String getUserPhone() {
         return userPhone;
-    }
-
-    public String getUserAddress() {
-        return userAddress;
     }
 
     public int getUserPoint() {

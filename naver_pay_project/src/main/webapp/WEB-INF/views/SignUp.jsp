@@ -81,7 +81,7 @@
 
     <div id="msg" class="msg"></div>
     <label for="userID">아이디</label>
-    <input class="input-field" id="userID" type="text" name="userID" placeholder="7 ~ 14자 영문 대소문자와 숫자"
+    <input class="input-field" id="userID" type="text" name="userId" placeholder="7 ~ 14자 영문 대소문자와 숫자"
            pattern="[a-zA-Z]{1}[a-zA-Z0-9_-]{7,14}" required autofocus>
     <%--    아직 특수문자같은거 정규식 사용해서 설정 안함 --%>
     <label for="userPassword">비밀번호</label>
@@ -91,10 +91,8 @@
     <input class="input-field" id="userPasswordCheck" type="text" name="userPasswordCheck" required>
     <label for="userName">이름</label>
     <input class="input-field" id="userName" type="text" name="userName" placeholder="홍길동">
-    <label for="userPhoneNumber">핸드폰번호</label>
-    <input class="input-field" id="userPhoneNumber" type="text" name="userPhoneNumber" placeholder="당신 핸드폰 번호">
-    <label for="userAddress">주소</label>
-    <input class="input-field" id="userAddress" type="text" name="userAddress" placeholder="당신 집 주소">
+    <label for="userPhone">핸드폰번호</label>
+    <input class="input-field" id="userPhone" type="text" name="userPhone" placeholder="당신 핸드폰 번호">
 
     <button>회원 가입</button>
     <button type="button" onclick="location.href='/'">취소</button>

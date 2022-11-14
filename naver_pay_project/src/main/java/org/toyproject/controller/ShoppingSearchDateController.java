@@ -29,7 +29,6 @@ public class ShoppingSearchDateController {
         CustomDateEditor editor = new CustomDateEditor(dateFormat, true);
         binder.registerCustomEditor(Date.class, editor);
     }
-
     @RequestMapping(value = "/getSearchDate")
     public String Shopping(HttpSession session,
                             @RequestParam("startDate") Date startDate,
@@ -46,6 +45,5 @@ public class ShoppingSearchDateController {
         model.addAttribute("DtoList",theDTOs);
         model.addAttribute("shoppingList",theDTOs.size() + "건의 검색결과");
         return "Shopping";
-
     }
 }

@@ -1,4 +1,4 @@
-package org.toyproject.WebCrawling;
+package org.toyproject.webcrawling;
 
 import org.toyproject.DB.ConnectionPoolMgr;
 import org.toyproject.entity.OrderedProductHistoryEntity;
