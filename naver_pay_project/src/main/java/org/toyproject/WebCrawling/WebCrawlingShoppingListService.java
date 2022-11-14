@@ -1,4 +1,4 @@
-package org.toyproject.service;
+package org.toyproject.WebCrawling;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.jsoup.nodes.Document;
@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.toyproject.entity.WebCrawlingShoppingListEntity;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -65,7 +64,7 @@ public class WebCrawlingShoppingListService {
         String userAddress = "강남구 역삼동 비왕빌딩 10층";
         String userPw = randomPassword();
         String userName = randomName();
-        String userTel = randomTel();
+        String userPhone = randomTel();
         String paymentMethod = randomPaymentMethod();
 
         /*주문내역 페이지 크롤링*/
@@ -85,7 +84,7 @@ public class WebCrawlingShoppingListService {
 
         Elements orderTotalMoneyAndDateList = doc.select("ul.info");
         long orderTotalMoney; //총 제품가격
-        Date orderDate; //주문 날짜
+        String orderDate; //주문 날짜
 
         Elements sellerList = doc.select("span.seller");
         String companyName; //판매자
@@ -119,9 +118,8 @@ public class WebCrawlingShoppingListService {
 //        for (int i=0; i<4; i++){
 
             productName = realproductNames.get(i); //제품명
-            String tempDate=realOrderDate.get(i); //주문 날짜
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            orderDate = formatter.parse(tempDate);
+            orderDate=realOrderDate.get(i); //주문 날짜
+
             companyName=realCompanyName.get(i); //판매자
             companyPhone=realCompanyPhone.get(i); //판매자 대표번호
             long businessNumber = randomBusinessNumber(); //사업자 번호
@@ -135,15 +133,15 @@ public class WebCrawlingShoppingListService {
             elements = doc.select("dd.pdb");
             if (!elements.text().equals("")){
                 userName = elements.text().split(" ")[0]; //userName
-                userTel =elements.text().split(" ")[1]; //userTel
+                userPhone =elements.text().split(" ")[1]; //userPhone
             };
 
             elements = doc.select("a.seller_inquiry");
-            String companyStore; //companyStore
+            String companyUrl; //companyUrl
             if (elements.attr("href").equals("#")){
-                companyStore = "No store url";
+                companyUrl = "No store url";
             }else{
-                companyStore = elements.attr("href");
+                companyUrl = elements.attr("href");
             }
 
             elements = doc.select("span.p_color_green");
@@ -156,7 +154,7 @@ public class WebCrawlingShoppingListService {
             int orderQuantity =Integer.parseInt(elements.text().split(" ")[1].replaceAll("[()개]","")); //orderQuantity
 
             elements = doc.select("em.thm");
-            long orderMoney=Long.parseLong(elements.text().split(" ")[elements.text().split(" ").length-1].replace(",",""));
+            int usedMoney=Integer.parseInt(elements.text().split(" ")[elements.text().split(" ").length-1].replace(",",""));
             int usedPoint;
             if (elements.text().split(" ")[elements.text().split(" ").length-2].equals(elements.text().split(" ")[elements.text().split(" ").length-1])){
                 usedPoint=0;
@@ -170,19 +168,36 @@ public class WebCrawlingShoppingListService {
             long productPrice = orderTotalMoney/ orderQuantity;
 
 
-//            System.out.println("로그인아이디:"+userId+" 비밀번호:"+userPw+ "이름:"+userName+" 연락처:"+userTel+" 주소:"+userAddress+" 포인트잔액:"+userPoint);
-//            System.out.println("회사명:"+companyName+" 회사번호:"+companyPhone+" 회사URL:"+companyStore+" 사업자번호:"+businessNumber);
+//            System.out.println("로그인아이디:"+userId+" 비밀번호:"+userPw+ "이름:"+userName+" 연락처:"+userPhone+" 주소:"+userAddress+" 포인트잔액:"+userPoint);
+//            System.out.println("회사명:"+companyName+" 회사번호:"+companyPhone+" 회사URL:"+companyUrl+" 사업자번호:"+businessNumber);
 //            System.out.println(" 제품명:"+productName+" 제공포인트:"+supplyPoint+" 제품가격:"+productPrice);
 //            System.out.println(" 결제방법:"+paymentMethod);
-//            System.out.println(" 주문번호:"+orderId+" 주문 날짜:"+orderDate+" 주문수량:"+orderQuantity+" 사용포인트:"+usedPoint+" 결제금액:"+orderMoney+" 총 결제금액:"+orderTotalMoney);
+//            System.out.println(" 주문번호:"+orderId+" 주문 날짜:"+orderDate+" 주문수량:"+orderQuantity+" 사용포인트:"+usedPoint+" 결제금액:"+usedMoney+" 총 결제금액:"+orderTotalMoney);
 //            System.out.println("------------------------------------------------");
+            WebCrawlingUserEntity uEntity = new WebCrawlingUserEntity(
+                    userId, userPw, userName, userPhone,userAddress,Integer.parseInt(userPoint)
+            );
+
+            WebCrawlingOrderEntity oEntity = new WebCrawlingOrderEntity(
+                    orderId,orderDate,orderQuantity,usedPoint, usedMoney, orderTotalMoney
+            );
+
+            String productNameCompanyName = productName+companyName;
+            WebCrawlingProductEntity pEntity = new WebCrawlingProductEntity(
+                    productNameCompanyName,productName,productPrice,supplyPoint
+            );
+
+            WebCrawlingCompanyEntity cEntity = new WebCrawlingCompanyEntity(
+                    companyName,companyPhone,companyUrl
+            );
+
+            WebCrawlingDAO theDao = WebCrawlingDAO.getInstance();
+            theDao.InsertCompanyInfo(cEntity,uEntity,pEntity,oEntity);
+
+
 
             WebCrawlingShoppingListEntity temp = new WebCrawlingShoppingListEntity(
-                    userId,userPw,userName,userTel,userAddress,userPoint,
-                    companyName,companyPhone,companyStore,businessNumber,
-                    productName,productPrice,supplyPoint,
-                    paymentMethod,
-                    orderId,orderDate,orderQuantity,usedPoint,orderTotalMoney
+                    userId,userPw,userName,userPhone,userAddress,userPoint,companyName,companyPhone,companyUrl,businessNumber,productName,productPrice,supplyPoint,paymentMethod,orderId,orderDate,orderQuantity,usedPoint,orderTotalMoney
             );
             WebCrawlingShoppingListEntities.add(temp);
         }
