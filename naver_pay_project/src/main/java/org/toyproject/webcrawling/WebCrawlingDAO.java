@@ -7,6 +7,7 @@ import org.toyproject.DB.ConnectionPoolMgr;
 
 import java.sql.*;
 
+
 @Repository
 public class WebCrawlingDAO {
 

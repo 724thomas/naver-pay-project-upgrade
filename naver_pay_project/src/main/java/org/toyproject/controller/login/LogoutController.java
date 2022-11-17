@@ -41,7 +41,7 @@ public class LogoutController { // 로그아웃 컨트롤러
 
         if (session.getAttribute("SESSION_ID") == null) {
             session.setAttribute("logout", Status.FAIL);
-            return view; // login 되어있는 상태로 redirect
+            return view; // org.toyproject.login 되어있는 상태로 redirect
         }
 
         cookieMgr.delete(request, response);
@@ -50,6 +50,6 @@ public class LogoutController { // 로그아웃 컨트롤러
         session = request.getSession(); // 새로운 세션 생성 (새로운 세션 만들어 redirect 하기 위함)
         session.setAttribute("logout", Status.SUCCESS);
 
-        return view; // login 끊긴 상태로 redirect
+        return view; // org.toyproject.login 끊긴 상태로 redirect
     }
 }

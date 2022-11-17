@@ -1,12 +1,12 @@
 package org.toyproject.webcrawling;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Builder
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class WebCrawlingCompanyEntity {
 
     //Company

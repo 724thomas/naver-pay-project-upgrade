@@ -8,7 +8,7 @@
 //import org.toyproject.service.CookieMgr;
 //import org.toyproject.service.SessionMgr;
 //import org.toyproject.service.UserService;
-//import org.toyproject.controller.login.Status;
+//import org.toyproject.controller.org.toyproject.login.Status;
 //
 //import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpServletResponse;
@@ -65,7 +65,7 @@
 //        String view = LoginPage(request, session); // Login.jsp
 //        Status respStatus = Status.FAIL;
 //        UserDTO userDTO = userService.Login(userId, userPassword);
-//        //Login.jsp에서 가져온 ID와 PW를 userService의 login 메소드를 사용해 userDTO에 정보를 담는다.
+//        //Login.jsp에서 가져온 ID와 PW를 userService의 org.toyproject.login 메소드를 사용해 userDTO에 정보를 담는다.
 //
 //
 //        if (userDTO != null) { //userDTO에 정보가 담겨 있을 때

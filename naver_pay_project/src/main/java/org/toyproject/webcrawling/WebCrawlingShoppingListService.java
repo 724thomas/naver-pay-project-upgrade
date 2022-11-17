@@ -1,6 +1,7 @@
 package org.toyproject.webcrawling;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import lombok.extern.log4j.Log4j2;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
@@ -18,7 +19,17 @@ import java.util.ArrayList;
 import java.util.List;
 import org.jsoup.Jsoup;
 
+@Log4j2
 public class WebCrawlingShoppingListService {
+
+    private WebCrawlingShoppingListService webCrawlingShoppingListService=null;
+
+    public WebCrawlingShoppingListService getInstance(){
+        if (webCrawlingShoppingListService==null){
+            webCrawlingShoppingListService=new WebCrawlingShoppingListService();
+        }
+        return webCrawlingShoppingListService;
+    }
 
     public static void main(String[] args) throws Exception {
 //        WebDriverManager.chromedriver().setup();
@@ -54,7 +65,7 @@ public class WebCrawlingShoppingListService {
         copyAndPaste(loginUserPassword);
 
         /*로그인*/
-        WebElement login_btn = driver.findElement(By.cssSelector("#log\\.login"));
+        WebElement login_btn = driver.findElement(By.cssSelector("#log\\.org.toyproject.login"));
         login_btn.click();
 
 
@@ -183,6 +194,13 @@ public class WebCrawlingShoppingListService {
 //            WebCrawlingOrderEntity oEntity = new WebCrawlingOrderEntity(
 //                    orderId,orderDate,orderQuantity,usedPoint, usedMoney, orderTotalMoney
 //            );
+//            WebCrawlingProductEntity pEntity = new WebCrawlingProductEntity(
+//                    productNameCompanyName,productName,productPrice,supplyPoint
+//            );
+//            WebCrawlingCompanyEntity cEntity = new WebCrawlingCompanyEntity(
+//                    companyName,companyPhone,companyUrl
+//            );
+
             WebCrawlingUserEntity uEntity = WebCrawlingUserEntity.builder()
                     .userId(userId)
                     .userPw(userPw)
@@ -201,15 +219,20 @@ public class WebCrawlingShoppingListService {
                     .totalPayment(orderTotalMoney)
                     .build();
 
-
             String productNameCompanyName = productName+companyName;
-            WebCrawlingProductEntity pEntity = new WebCrawlingProductEntity(
-                    productNameCompanyName,productName,productPrice,supplyPoint
-            );
+            WebCrawlingProductEntity pEntity = WebCrawlingProductEntity.builder()
+                    .productNameCompanyName(productNameCompanyName)
+                    .productName(productName)
+                    .productPrice(productPrice)
+                    .supplyPoint(supplyPoint)
+                    .build();
 
-            WebCrawlingCompanyEntity cEntity = new WebCrawlingCompanyEntity(
-                    companyName,companyPhone,companyUrl
-            );
+            WebCrawlingCompanyEntity cEntity = WebCrawlingCompanyEntity.builder()
+                    .companyName(companyName)
+                    .companyPhone(companyPhone)
+                    .companyUrl(companyUrl)
+                    .build();
+
 
             WebCrawlingDAO theDao = WebCrawlingDAO.getInstance();
             theDao.InsertCompanyInfo(cEntity,uEntity,pEntity,oEntity);
@@ -220,6 +243,7 @@ public class WebCrawlingShoppingListService {
                     userId,userPw,userName,userPhone,userAddress,userPoint,companyName,companyPhone,companyUrl,businessNumber,productName,productPrice,supplyPoint,paymentMethod,orderId,orderDate,orderQuantity,usedPoint,orderTotalMoney
             );
             WebCrawlingShoppingListEntities.add(temp);
+            log.info(WebCrawlingShoppingListEntities);
         }
         driver.quit();
         return WebCrawlingShoppingListEntities;
