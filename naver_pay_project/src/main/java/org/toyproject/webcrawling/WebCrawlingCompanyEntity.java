@@ -14,7 +14,4 @@ public class WebCrawlingCompanyEntity {
     private String companyPhone;
     private String companyUrl;
 
-    public WebCrawlingCompanyEntity(){}
-
-
 }

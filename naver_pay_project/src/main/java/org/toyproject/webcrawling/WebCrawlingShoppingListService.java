@@ -20,11 +20,11 @@ import org.jsoup.Jsoup;
 
 public class WebCrawlingShoppingListService {
 
-    public static void main(String[] args) throws AWTException, ParseException {
+    public static void main(String[] args) throws Exception {
 //        WebDriverManager.chromedriver().setup();
         getShoppingListFromWeb("724thomas","");
     }
-    public static List<WebCrawlingShoppingListEntity> getShoppingListFromWeb(String naverId, String naverPassword) throws AWTException, ParseException {
+    public static List<WebCrawlingShoppingListEntity> getShoppingListFromWeb(String naverId, String naverPassword) throws Exception {
         List<WebCrawlingShoppingListEntity> WebCrawlingShoppingListEntities = new ArrayList<>();
 
         WebDriver driver = null;
@@ -177,13 +177,30 @@ public class WebCrawlingShoppingListService {
 //            System.out.println(" 결제방법:"+paymentMethod);
 //            System.out.println(" 주문번호:"+orderId+" 주문 날짜:"+orderDate+" 주문수량:"+orderQuantity+" 사용포인트:"+usedPoint+" 결제금액:"+usedMoney+" 총 결제금액:"+orderTotalMoney);
 //            System.out.println("------------------------------------------------");
-            WebCrawlingUserEntity uEntity = new WebCrawlingUserEntity(
-                    userId, userPw, userName, userPhone,userAddress,Integer.parseInt(userPoint)
-            );
+//            WebCrawlingUserEntity uEntity = new WebCrawlingUserEntity(
+//                    userId, userPw, userName, userPhone,userAddress,Integer.parseInt(userPoint)
+//            );
+//            WebCrawlingOrderEntity oEntity = new WebCrawlingOrderEntity(
+//                    orderId,orderDate,orderQuantity,usedPoint, usedMoney, orderTotalMoney
+//            );
+            WebCrawlingUserEntity uEntity = WebCrawlingUserEntity.builder()
+                    .userId(userId)
+                    .userPw(userPw)
+                    .userName(userName)
+                    .userPhone(userPhone)
+                    .userAddress(userAddress)
+                    .userPoint(Integer.parseInt(userPoint))
+                    .build();
 
-            WebCrawlingOrderEntity oEntity = new WebCrawlingOrderEntity(
-                    orderId,orderDate,orderQuantity,usedPoint, usedMoney, orderTotalMoney
-            );
+            WebCrawlingOrderEntity oEntity = WebCrawlingOrderEntity.builder()
+                    .orderId(orderId)
+                    .orderDate(orderDate)
+                    .orderQuantity(orderQuantity)
+                    .usedPoint(usedPoint)
+                    .usedMoney(usedMoney)
+                    .totalPayment(orderTotalMoney)
+                    .build();
+
 
             String productNameCompanyName = productName+companyName;
             WebCrawlingProductEntity pEntity = new WebCrawlingProductEntity(

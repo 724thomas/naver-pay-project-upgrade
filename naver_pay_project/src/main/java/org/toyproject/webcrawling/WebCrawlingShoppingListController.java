@@ -27,7 +27,7 @@ public class WebCrawlingShoppingListController {
         return "Loading";
     }
     @RequestMapping("/crawlingResult")
-    public String naverLogin(Model model) throws ParseException, AWTException {
+    public String naverLogin(Model model) throws Exception {
         List<WebCrawlingShoppingListEntity> theEntityList = WebCrawlingShoppingListService.getShoppingListFromWeb(naverUserId, naverUserPassword);
         model.addAttribute("crawlingResult",theEntityList);
         return "CrawlingResult";
