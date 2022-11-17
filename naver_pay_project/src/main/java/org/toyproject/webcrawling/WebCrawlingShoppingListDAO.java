@@ -1,8 +1,11 @@
 package org.toyproject.webcrawling;
 
+import lombok.Cleanup;
+import org.springframework.core.ReactiveAdapterRegistry;
 import org.toyproject.DB.ConnectionPoolMgr;
 import org.toyproject.entity.OrderedProductHistoryEntity;
 
+import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -55,6 +58,20 @@ public class WebCrawlingShoppingListDAO {
             webCrawlingShoppingListDAO =new WebCrawlingShoppingListDAO();
         }
         return webCrawlingShoppingListDAO;
+    }
+    public String testSelect(String userId) throws Exception{
+        String query = "SELECT user_name FROM USER_TABLE where user_id=?";
+
+        @Cleanup Connection connection = connectionPoolMgr.getConnection();
+        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1,userId);
+
+        @Cleanup ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        String result = (resultSet.getString(1));
+        System.out.println(result);
+        return result;
+
     }
 
     public List<OrderedProductHistoryEntity> getOrderedProductHistoryEntityWithUserId(String userId){

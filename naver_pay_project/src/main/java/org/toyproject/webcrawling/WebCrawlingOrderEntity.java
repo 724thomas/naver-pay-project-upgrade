@@ -1,5 +1,12 @@
 package org.toyproject.webcrawling;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@Builder
+@ToString
 public class WebCrawlingOrderEntity {
 
     //OrderInfo
@@ -10,38 +17,4 @@ public class WebCrawlingOrderEntity {
     private int usedMoney;
     private long totalPayment;
 
-    public WebCrawlingOrderEntity(){}
-
-    public WebCrawlingOrderEntity(String orderId, String orderDate, int orderQuantity, int usedPoint, int usedMoney, long totalPayment) {
-        this.orderId = orderId;
-        this.orderDate = orderDate;
-        this.orderQuantity = orderQuantity;
-        this.usedPoint = usedPoint;
-        this.usedMoney = usedMoney;
-        this.totalPayment = totalPayment;
-    }
-
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public String getOrderDate() {
-        return orderDate;
-    }
-
-    public int getOrderQuantity() {
-        return orderQuantity;
-    }
-
-    public int getUsedPoint() {
-        return usedPoint;
-    }
-
-    public int getUsedMoney() {
-        return usedMoney;
-    }
-
-    public long getTotalPayment() {
-        return totalPayment;
-    }
 }

@@ -1,7 +1,13 @@
 package org.toyproject.webcrawling;
 
-public class WebCrawlingCompanyEntity {
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
 
+@Getter
+@Builder
+@ToString
+public class WebCrawlingCompanyEntity {
 
     //Company
     private String companyName;
@@ -10,21 +16,5 @@ public class WebCrawlingCompanyEntity {
 
     public WebCrawlingCompanyEntity(){}
 
-    public WebCrawlingCompanyEntity(String companyName, String companyPhone, String companyUrl) {
-        this.companyName = companyName;
-        this.companyPhone = companyPhone;
-        this.companyUrl = companyUrl;
-    }
 
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public String getCompanyPhone() {
-        return companyPhone;
-    }
-
-    public String getCompanyUrl() {
-        return companyUrl;
-    }
 }

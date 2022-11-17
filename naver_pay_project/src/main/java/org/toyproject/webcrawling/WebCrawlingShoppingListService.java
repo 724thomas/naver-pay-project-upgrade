@@ -143,7 +143,12 @@ public class WebCrawlingShoppingListService {
             }
 
             elements = doc.select("span.p_color_green");
-            int supplyPoint = Integer.parseInt(elements.text().split(" ")[1].replaceAll("[,원]","")); //supplyPoint
+            int supplyPoint=0;
+            try{
+                supplyPoint = Integer.parseInt(elements.text().split(" ")[1].replaceAll("[,원]","")); //supplyPoint
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
             elements = doc.select("strong.pointcol");
             String orderId=elements.text(); //orderId

@@ -58,7 +58,7 @@ public class WebCrawlingDAO {
             stmt.setString(2, cEntity.getCompanyPhone());
             stmt.setString(3, cEntity.getCompanyUrl());
             stmt.setString(4, cEntity.getCompanyName());
-            result=stmt.executeUpdate();
+            stmt.executeUpdate();
             stmt=conn.prepareStatement(INSERT_USER_TABLE);
             stmt.setString(1, uEntity.getUserId());
             stmt.setString(2, uEntity.getUserPw());
@@ -66,7 +66,7 @@ public class WebCrawlingDAO {
             stmt.setString(4, uEntity.getUserPhone());
             stmt.setInt(5, uEntity.getUserPoint());
             stmt.setString(6, uEntity.getUserId());
-            result=stmt.executeUpdate();
+            stmt.executeUpdate();
             stmt=conn.prepareStatement(INSERT_PRODUCT_TABLE);
             stmt.setString(1, pEntity.getProductNameCompanyName());
             stmt.setString(2, pEntity.getProductName());
@@ -74,7 +74,7 @@ public class WebCrawlingDAO {
             stmt.setInt(4, pEntity.getSupplyPoint());
             stmt.setString(5, cEntity.getCompanyName());
             stmt.setString(6, pEntity.getProductNameCompanyName());
-            result=stmt.executeUpdate();
+            stmt.executeUpdate();
             stmt=conn.prepareStatement(INSERT_ORDER_TABLE);
             stmt.setString(1, oEntity.getOrderId());
             stmt.setString(2, oEntity.getOrderDate());
@@ -85,7 +85,7 @@ public class WebCrawlingDAO {
             stmt.setString(7, uEntity.getUserId());
             stmt.setString(8, pEntity.getProductNameCompanyName());
             stmt.setString(9, oEntity.getOrderId());
-            result=stmt.executeUpdate();
+            stmt.executeUpdate();
             conn.commit();
         }catch (SQLException e) {
             e.printStackTrace();

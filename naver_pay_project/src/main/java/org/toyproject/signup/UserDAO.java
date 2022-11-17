@@ -67,6 +67,7 @@ public class UserDAO {
                 String phone = rs.getString("user_phone");
                 int point = rs.getInt("user_point");
                 UserEntity temp = new UserEntity(id,pw,name,phone,point);
+                System.out.println("User Data Search SUCCESS");
                 return temp;
             }
 

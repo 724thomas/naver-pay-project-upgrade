@@ -1,5 +1,12 @@
 package org.toyproject.webcrawling;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@Builder
+@ToString
 public class WebCrawlingProductEntity {
 
     //Product
@@ -8,28 +15,4 @@ public class WebCrawlingProductEntity {
     private long productPrice;
     private int supplyPoint;
 
-    public WebCrawlingProductEntity(){}
-
-    public WebCrawlingProductEntity(String productNameCompanyName, String productName, long productPrice, int supplyPoint) {
-        this.productNameCompanyName = productNameCompanyName;
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.supplyPoint = supplyPoint;
-    }
-
-    public String getProductNameCompanyName() {
-        return productNameCompanyName;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public long getProductPrice() {
-        return productPrice;
-    }
-
-    public int getSupplyPoint() {
-        return supplyPoint;
-    }
 }
