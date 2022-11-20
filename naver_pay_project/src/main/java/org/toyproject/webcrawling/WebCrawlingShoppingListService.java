@@ -181,26 +181,6 @@ public class WebCrawlingShoppingListService {
             orderTotalMoney=Long.parseLong(elements.text().split(" ")[1].replaceAll("[,원]",""));
             long productPrice = orderTotalMoney/ orderQuantity;
 
-
-//            System.out.println("로그인아이디:"+userId+" 비밀번호:"+userPw+ "이름:"+userName+" 연락처:"+userPhone+" 주소:"+userAddress+" 포인트잔액:"+userPoint);
-//            System.out.println("회사명:"+companyName+" 회사번호:"+companyPhone+" 회사URL:"+companyUrl+" 사업자번호:"+businessNumber);
-//            System.out.println(" 제품명:"+productName+" 제공포인트:"+supplyPoint+" 제품가격:"+productPrice);
-//            System.out.println(" 결제방법:"+paymentMethod);
-//            System.out.println(" 주문번호:"+orderId+" 주문 날짜:"+orderDate+" 주문수량:"+orderQuantity+" 사용포인트:"+usedPoint+" 결제금액:"+usedMoney+" 총 결제금액:"+orderTotalMoney);
-//            System.out.println("------------------------------------------------");
-//            WebCrawlingUserEntity uEntity = new WebCrawlingUserEntity(
-//                    userId, userPw, userName, userPhone,userAddress,Integer.parseInt(userPoint)
-//            );
-//            WebCrawlingOrderEntity oEntity = new WebCrawlingOrderEntity(
-//                    orderId,orderDate,orderQuantity,usedPoint, usedMoney, orderTotalMoney
-//            );
-//            WebCrawlingProductEntity pEntity = new WebCrawlingProductEntity(
-//                    productNameCompanyName,productName,productPrice,supplyPoint
-//            );
-//            WebCrawlingCompanyEntity cEntity = new WebCrawlingCompanyEntity(
-//                    companyName,companyPhone,companyUrl
-//            );
-
             WebCrawlingUserEntity uEntity = WebCrawlingUserEntity.builder()
                     .userId(userId)
                     .userPw(userPw)
