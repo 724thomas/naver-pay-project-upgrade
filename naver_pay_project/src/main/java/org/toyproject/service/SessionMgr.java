@@ -19,14 +19,14 @@ public class SessionMgr {
 
     public void create(HttpSession session, String value) {
         if (session.getAttribute("SESSION_ID") == null) {
-            session.setMaxInactiveInterval(1800); // 30분
+            session.setMaxInactiveInterval(60*30); // 30분
             session.setAttribute("SESSION_ID", value);
         }
     }
 
     public void create(HttpSession session, String name, String value) {
         if (session.getAttribute(name) == null) {
-            session.setMaxInactiveInterval(1800); // 30분
+            session.setMaxInactiveInterval(60*30); // 30분
             session.setAttribute(name, value);
         }
     }

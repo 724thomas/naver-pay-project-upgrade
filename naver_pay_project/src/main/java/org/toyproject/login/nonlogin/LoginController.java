@@ -1,4 +1,53 @@
-//package org.toyproject.controller.nonlogin;
+package org.toyproject.login.nonlogin;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.net.URLEncoder;
+
+@Controller
+@RequestMapping("/login")
+public class LoginController{
+    @GetMapping("/login")
+    public String loginForm(){
+        return "loginForm";
+    }
+
+    @PostMapping("/login")
+    public String login(String id, String pwd, boolean rememberId, HttpServletRequest request, HttpServletResponse response) throws Exception {
+//        if(!loginCheck(id,pwd)){-
+        if(!id.equals("a1234")){
+            String msg = URLEncoder.encode("id 또는 pwd가 일치하지 않습니다.","utf-8");
+            return "redirect:/login/login?msg="+msg;
+        }
+        HttpSession session = request.getSession();
+        session.setAttribute("id",id);
+
+        if((rememberId)){
+            Cookie cookie = new Cookie("id",id);
+            cookie.setMaxAge(60*30); //30분
+            response.addCookie(cookie);
+        }else{
+            Cookie cookie = new Cookie("id",id);
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
+        }
+        return "redirect:/";
+    }
+
+
+}
+
+
+
+//
+//package org.toyproject.login.nonlogin;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Controller;
@@ -62,7 +111,7 @@
 //        // 그래서 파라미터가 타입에 맞게 꼭 전달해야 되는 경우
 //        // 이런식으로 파라미터를 선언하게 되면 알아서 형변환이 되어 변수로 사용할 수 있고 편리하다.
 //
-//        String view = LoginPage(request, session); // Login.jsp
+//        String view = LoginPage(request, session); // loginForm.jsp
 //        Status respStatus = Status.FAIL;
 //        UserDTO userDTO = userService.Login(userId, userPassword);
 //        //Login.jsp에서 가져온 ID와 PW를 userService의 org.toyproject.login 메소드를 사용해 userDTO에 정보를 담는다.

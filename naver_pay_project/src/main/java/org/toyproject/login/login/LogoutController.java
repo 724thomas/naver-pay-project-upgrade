@@ -1,4 +1,4 @@
-package org.toyproject.controller.login;
+package org.toyproject.login.login;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -21,7 +21,7 @@ public class SignUpController {
         if (result==0){
             return "SignUp";
         }else{
-            return "Login";
+            return "loginForm";
         }
     }
 }

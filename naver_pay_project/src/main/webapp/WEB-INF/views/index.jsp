@@ -6,7 +6,7 @@
   <body>
     <h1>메인 화면 입니다.</h1>
     <%if (session.getAttribute("SESSION_ID") == null){%>
-      <button type="button" onclick="location.href='Login'">로그인</button>
+      <button type="button" onclick="location.href='login/login'">로그인</button>
       <button type="button" onclick="location.href='SignUp'">회원가입</button>
       <button type="button" onclick="location.href='crawling'">크롤링</button>
     <%}else{%>
