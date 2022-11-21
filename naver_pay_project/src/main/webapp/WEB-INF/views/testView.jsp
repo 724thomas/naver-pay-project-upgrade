@@ -25,14 +25,19 @@
                 table.innerHTML = "";
 
                 let object = JSON.parse(searchRequest.responseText);
-                $("result").html(object)
-                console.log(object);
-                obj["member_list"].forEach(
-                    member =>  array.push("<li>"+member.id+"</li>")
-                    //JSON에 있는 member.id의 value를 li태그에 넣어서 array에 넣어줌
-                );
-                array.push("</ol>");
-                $("#result").html(array.join(""));
+                let array=["<ol>"];
+                obj["result_list"].forEach(
+                    result => array.push("<li>"+result.userId+"</li>")
+                //    https://scoring.tistory.com/entry/AJAX%EB%9E%80-JQuery%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-AJAX%EC%82%AC%EC%9A%A9%EB%B2%95
+                )
+                $("#result").html(object)
+                // console.log(object);
+                // obj["member_list"].forEach(
+                //     member =>  array.push("<li>"+member.id+"</li>")
+                //     //JSON에 있는 member.id의 value를 li태그에 넣어서 array에 넣어줌
+                // );
+                // array.push("</ol>");
+                // $("#result").html(array.join(""));
 
             }
         };
@@ -51,6 +56,14 @@
 
             <a href="#" id="listButton">회원리스트</a><br/>
             <div id="result">이곳에 회원 목록을 출력하세요</div>
+            <c:forEach items="result" var="dto">
+                <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+                <p>${dto.userId}</p>
+                <a href=${dto.url}>${dto.userPassword}</a>
+                <p>${dto.description}</p>
+                <br/>
+                <hr/>
+            </c:forEach>
         </div>
         <table class="table" style="width: 500px; text-align: center; border: 1px solid #dddddd">
             <thead>
