@@ -73,22 +73,26 @@
 </head>
 <body>
 
-<form action="/login" method="POST">
+<form action="/SignUp" method="POST">
     <%--<form action="/sign/success" method="POST" onsubmit="return setMessage(this)">--%>
     <%--  회원 가입 완료하면 입력한 정보 저장하고 메인 페이지로 이동하기--%>
 
     <legend>회원가입</legend>
 
     <div id="msg" class="msg"></div>
+<%--    <label for="userID">아이디</label>--%>
+<%--    <input class="input-field" id="userID" type="text" name="userId" placeholder="7 ~ 14자 영문 대소문자와 숫자"--%>
+<%--           pattern="[a-zA-Z]{1}[a-zA-Z0-9_-]{7,14}" required autofocus>--%>
+<%--    &lt;%&ndash;    아직 특수문자같은거 정규식 사용해서 설정 안함 &ndash;%&gt;--%>
+<%--    <input class="input-field" id="userPassword" type="text" name="userPassword" placeholder="10 ~ 16자 영문,숫자,특수문자 포함"--%>
+<%--           pattern="^[a-zA-Z0-9!@#$%^&*]{10,16}$" required>--%>
     <label for="userID">아이디</label>
-    <input class="input-field" id="userID" type="text" name="userId" placeholder="7 ~ 14자 영문 대소문자와 숫자"
-           pattern="[a-zA-Z]{1}[a-zA-Z0-9_-]{7,14}" required autofocus>
-    <%--    아직 특수문자같은거 정규식 사용해서 설정 안함 --%>
+    <input class="input-field" id="userID" type="text" name="userId" placeholder="7 ~ 14자 영문 대소문자와 숫자" required autofocus>
     <label for="userPassword">비밀번호</label>
-    <input class="input-field" id="userPassword" type="text" name="userPassword" placeholder="10 ~ 16자 영문,숫자,특수문자 포함"
-           pattern="^[a-zA-Z0-9!@#$%^&*]{10,16}$" required>
+    <input class="input-field" id="userPassword" type="text" name="userPassword" placeholder="10 ~ 16자 영문,숫자,특수문자 포함" required>
     <label for="userPasswordCheck">비밀번호 확인</label>
     <input class="input-field" id="userPasswordCheck" type="text" name="userPasswordCheck" required>
+
     <label for="userName">이름</label>
     <input class="input-field" id="userName" type="text" name="userName" placeholder="홍길동">
     <label for="userPhone">핸드폰번호</label>

@@ -14,6 +14,12 @@ import java.net.URLEncoder;
 @Controller
 @RequestMapping("/login")
 public class LoginController{
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
+    }
     @GetMapping("/login")
     public String loginForm(){
         return "loginForm";

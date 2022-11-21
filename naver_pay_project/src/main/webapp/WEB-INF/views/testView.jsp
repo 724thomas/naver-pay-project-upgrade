@@ -1,10 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>JSP</title>
-    <link href="/resources/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <header>
@@ -16,9 +15,7 @@
 
         const searchRequest = new XMLHttpRequest();
         searchRequest.open("POST", "/test?q=" + $("#q").val(), true);
-        alert("???")
         searchRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf8");
-        alert("??")
         searchRequest.onreadystatechange = () => {
             if(searchRequest.readyState == 4 && searchRequest.status == 200) {
                 console.log("gwew", searchRequest.responseText);
@@ -27,21 +24,16 @@
                 const table = $("#ajaxTable")[0]; // dom 반환
                 table.innerHTML = "";
 
-                const object = JSON.parse(searchRequest.responseText);
-                alert(q)
+                let object = JSON.parse(searchRequest.responseText);
+                $("result").html(object)
+                console.log(object);
+                obj["member_list"].forEach(
+                    member =>  array.push("<li>"+member.id+"</li>")
+                    //JSON에 있는 member.id의 value를 li태그에 넣어서 array에 넣어줌
+                );
+                array.push("</ol>");
+                $("#result").html(array.join(""));
 
-                for(let i = 0; i < object.length; i++) {
-                    const user = [object[i].title, object[i].url];
-                    const row = table.insertRow(0); // 0번째 행에 추가 (tr)
-                    row.style.width = "250px";
-
-                    for(let j = 0; j < user.length; j++) {
-                        const cell = row.insertCell(j); // j번째 열 추가 (td)
-                        cell.innerHTML = user[j];
-                        cell.style.width = "250px";
-
-                    }
-                }
             }
         };
         searchRequest.send(null);
@@ -56,6 +48,9 @@
         <div class="" style="margin:20px; text-align: right;">
             <input class="" id="q" onkeyup="test();" type="text" size="20">
             <button class="" onclick="test();" type="button">Search</button>
+
+            <a href="#" id="listButton">회원리스트</a><br/>
+            <div id="result">이곳에 회원 목록을 출력하세요</div>
         </div>
         <table class="table" style="width: 500px; text-align: center; border: 1px solid #dddddd">
             <thead>

@@ -5,7 +5,7 @@
     <title>TItle</title>
 </head>
 <body>
-<form action="<c:url value="/login"/>" method="post" onsubmit="return formCheck(this);">
+<form action='/login/login' method="post" onsubmit="return formCheck(this);">
     <c:if test="${not empty param.msg}">
         <label>${URLDecoder.decode(param.msg)}</label>
     </c:if>
