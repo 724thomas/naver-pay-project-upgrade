@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>JSP</title>
 </head>
-<body>
+
 <header>
 </header>
 
@@ -17,12 +17,19 @@
             if (httpRequest.readyState === XMLHttpRequest.DONE){
                 if (httpRequest.status===200) {
                     const result = httpRequest.response;
+                    console.log(JSON.stringify(result))
+
+                    var cont="";
                     for (var i = 0; i < result.length; i++) {
-                        console.log(result[i].userId);
+                        console.log(result);
+                        cont+='<br>'+JSON.stringify(result);
                     }
+                    // document.getElementById("ajaxTitle").innerHTML=result.title;
+
+                    document.getElementById("ajaxTable").innerHTML=cont;
+                }else {
+                    alert('서버에러');
                 }
-            } else {
-                alert('서버에러');
             }
         };
         httpRequest.open('GET', '/test/test');
@@ -32,28 +39,13 @@
 </script>
 
 
-<main>
-    <h1>SEARCH</h1>
-    <div>Hello! ${uId}</div>
-    <div class="container" style="margin:20px;">
-        <div class="" style="margin:20px; text-align: right;">
-            <input class="" id="q" onkeyup="test();" type="text" size="20">
-            <button class="" onclick="test();" type="button">Search</button>
-        </div>
-        <table class="table" style="width: 500px; text-align: center; border: 1px solid #dddddd">
-            <thead>
-            <tr>
-                <th style="width: 250px; padding:5px; background-color: #fafafa; text-align: center;">UID</th>
-                <th style="width: 250px; padding:5px; background-color: #fafafa; text-align: center;">EMAIL</th>
-            </tr>
-            </thead>
-            <tbody id="ajaxTable">
-            </tbody>
-        </table>
-    </div>
-</main>
 
+<body>
+<h1>SEARCH</h1>
+<input class="" id="q" onkeyup="test();" type="text" size="20">
+<button class="" onclick="test();" type="button">Search</button>
+</body>
+<div  id="ajaxTable"></div>
 <footer class="main__nav__next">
 </footer>
-</body>
 </html>
