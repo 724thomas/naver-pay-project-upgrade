@@ -29,23 +29,23 @@ public class SearchController {
         return "SearchResult";
     }
 
-    @PostMapping(value="/Search",
-        consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public List<SearchDTO> Search2(@RequestParam(required = false) String q) {
-        System.out.println("Post");
-        SearchService theService = SearchService.getInstance();
-        List<SearchDTO> temp = null;
-        System.out.println("This part works");
-        try{
-            temp = theService.search(q);
-            System.out.println("Controller Works");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return temp;
-    }
+//    @PostMapping(value="/Search",
+//        consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+//        produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseBody
+//    public List<SearchDTO> Search2(@RequestParam(required = false) String q) {
+//        System.out.println("Post");
+//        SearchService theService = SearchService.getInstance();
+//        List<SearchDTO> temp = null;
+//        System.out.println("This part works");
+//        try{
+//            temp = theService.search(q);
+//            System.out.println("Controller Works");
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        return temp;
+//    }
 
 
 //    @GetMapping("/SearchAgain")

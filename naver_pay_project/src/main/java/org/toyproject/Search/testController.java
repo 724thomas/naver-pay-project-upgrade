@@ -17,14 +17,18 @@ public class testController {
 
 
 
-    @GetMapping("/test/test")
-    public List<SearchDTO> testing(@RequestParam(required = false) String q) {
-        List<SearchDTO> tempList = new ArrayList();
-        System.out.println("Controller Testing");
-        SearchDTO temp = new SearchDTO("abc","www.abc.com","this is abc");
-        SearchDTO temp2 = new SearchDTO("def","www.def.com","this is def");
-        tempList.add(temp);
-        tempList.add(temp2);
-        return tempList;
+    @PostMapping("/Searchs")
+    public List<SearchDTO> Search2(@RequestParam(required = false) String q) {
+        SearchService theService = SearchService.getInstance();
+        List<SearchDTO> temp = null;
+        System.out.println("This part works");
+        System.out.println("the string q is " + q);
+        q="구글";
+        try{
+            temp = theService.search(q);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return temp;
     }
 }

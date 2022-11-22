@@ -17,16 +17,24 @@
             if (httpRequest.readyState === XMLHttpRequest.DONE){
                 if (httpRequest.status===200) {
                     const result = httpRequest.response;
-                    console.log(JSON.stringify(result))
-
+                    console.log(JSON.stringify(result));
                     var cont="";
-                    for (var i = 0; i < result.length; i++) {
-                        console.log(result);
-                        cont+='<br>'+JSON.stringify(result);
-                    }
-                    // document.getElementById("ajaxTitle").innerHTML=result.title;
+                    // for (var i = 0; i < result.length; i++) {
+                    //     // console.log(result);
+                    //     cont+='<br>'+JSON.stringify(result);
+                    //
+                    // }
+                    var values="";
+                    for (var i=0; i<result.length; i++){
 
-                    document.getElementById("ajaxTable").innerHTML=cont;
+                        // values+="<br>"+Object.values(result[i]);
+                        values+="<br>"+result[i]["title"];
+                        values+="<br><a href="+result[i]["url"]+">"+result[i]["title"]+"</a>";
+                        values+="<br>"+result[i]["description"];
+                        values+="<br>";
+
+                    }
+                    document.getElementById("ajaxTable").innerHTML=values;
                 }else {
                     alert('서버에러');
                 }

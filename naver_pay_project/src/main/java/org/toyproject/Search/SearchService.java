@@ -28,9 +28,10 @@ public class SearchService {
         a.search2("구글");
     }
     public List<SearchDTO> search(String keyword) throws IOException{
-        List<SearchDTO> SearchDTOs = new ArrayList<>();
         String URL = "https://www.google.com/search?q="+keyword.replace(" ","+");
+        List<SearchDTO> SearchDTOs = new ArrayList<>();
         Document doc;
+        System.out.println(keyword);
         try{
             doc=Jsoup.connect(URL).get();
             Elements total = doc.select("div.MjjYud");
