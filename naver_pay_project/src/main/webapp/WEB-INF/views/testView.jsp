@@ -17,13 +17,6 @@
             if (httpRequest.readyState === XMLHttpRequest.DONE){
                 if (httpRequest.status===200) {
                     const result = httpRequest.response;
-                    console.log(JSON.stringify(result));
-                    var cont="";
-                    // for (var i = 0; i < result.length; i++) {
-                    //     // console.log(result);
-                    //     cont+='<br>'+JSON.stringify(result);
-                    //
-                    // }
                     var values="";
                     for (var i=0; i<result.length; i++){
 

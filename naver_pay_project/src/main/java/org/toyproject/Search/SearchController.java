@@ -14,18 +14,19 @@ import java.util.stream.Collectors;
 @Controller
 public class SearchController {
     @GetMapping("/Search")
-    public String Search(@RequestParam("searchKeyword") String keyword, Model model){
-        System.out.println("Get");
-        SearchService theService = SearchService.getInstance();
-        List<SearchDTO> temp = null;
-        try{
-            temp = theService.search(keyword);
-            System.out.println(temp);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        model.addAttribute("searchKeyword",keyword);
-        model.addAttribute("theDTOs", temp);
+    public String Search(@RequestParam("searchKeyword") String keyword, String q,Model model){
+//        System.out.println("Get");
+//        System.out.println(q);
+//        SearchService theService = SearchService.getInstance();
+//        List<SearchDTO> temp = null;
+//        try{
+//            temp = theService.search(keyword);
+//            System.out.println(temp);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        model.addAttribute("searchKeyword",keyword);
+//        model.addAttribute("theDTOs", temp);
         return "SearchResult";
     }
 

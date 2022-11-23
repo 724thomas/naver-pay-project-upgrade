@@ -10,30 +10,21 @@
 </header>
 
 <script>
-    //testView.jsp
     function test() {
+
+        let obj=document.getElementById("q").value;
         const httpRequest = new XMLHttpRequest();
         httpRequest.onreadystatechange = () =>{
             if (httpRequest.readyState === XMLHttpRequest.DONE){
                 if (httpRequest.status===200) {
                     const result = httpRequest.response;
-                    console.log(JSON.stringify(result));
-                    var cont="";
-                    // for (var i = 0; i < result.length; i++) {
-                    //     // console.log(result);
-                    //     cont+='<br>'+JSON.stringify(result);
-                    //
-                    // }
                     var values="";
                     if(result!==null){
                         for (var i=0; i<result.length; i++){
-
-                            // values+="<br>"+Object.values(result[i]);
-                            values+="<br>"+result[i]["title"];
+                            values+="<br>"+result[i]["url"];
                             values+="<br><a href="+result[i]["url"]+">"+result[i]["title"]+"</a>";
                             values+="<br>"+result[i]["description"];
                             values+="<br>";
-
                         }
                         document.getElementById("ajaxTable").innerHTML=values;
                     }
@@ -42,9 +33,9 @@
                 }
             }
         };
-        httpRequest.open('POST', '/Searchs');
+        httpRequest.open('GET', '/Searchs?q='+obj);
         httpRequest.responseType="json";
-        httpRequest.send()
+         httpRequest.send();
     }
 </script>
 

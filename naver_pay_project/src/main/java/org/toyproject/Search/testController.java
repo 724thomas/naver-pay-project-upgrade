@@ -8,6 +8,7 @@ import org.toyproject.signup.UserDTO;
 
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,18 +18,17 @@ public class testController {
 
 
 
-    @PostMapping("/Searchs")
-    public List<SearchDTO> Search2(@RequestParam(required = false) String q) {
+    @GetMapping("/Searchs")
+    public List<SearchDTO> Search2(@RequestParam HashMap<String,String> q) {
         SearchService theService = SearchService.getInstance();
-        List<SearchDTO> temp = null;
         System.out.println("This part works");
-        System.out.println("the string q is " + q);
-        q="구글";
+        System.out.println("the string q is " + q.get("q"));
+       // q="구글";
         try{
-            temp = theService.search(q);
+            return theService.search(q.get("q"));
         }catch (Exception e){
             e.printStackTrace();
         }
-        return temp;
+        return null;
     }
 }
